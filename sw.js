@@ -1,5 +1,5 @@
-STATIC_CACHE_NAME = "static-nosleepfix";
-DATA_CACHE_NAME = "data-pleasework3";
+STATIC_CACHE_NAME = "static-logo";
+DATA_CACHE_NAME = "data-110521-2";
 
 STATIC_CACHE_FILES = [
   "/",

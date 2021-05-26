@@ -52,7 +52,6 @@ class Countdown {
   }
   startNext() {
     if (this.canceled) {
-      this.target.innerHTML = "";
       return;
     }
     let destTime = this.timeFunc();
@@ -69,7 +68,7 @@ class Countdown {
   }
   startLast() {
     if (this.canceled) {
-      this.end();
+      return;
     }
     setTimeout(() => {this.end()}, this.endTime - this.timeFunc());
   }

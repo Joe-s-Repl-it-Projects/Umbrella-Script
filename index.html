@@ -21,25 +21,24 @@
     <link rel="apple-touch-icon" href="/images/homepage152.png">
   </head>
   <body data-state="login">
-    <div id="delay-box" class="no-schedule no-run">
-      <span id="delay-text">Offset: unknown</span><br />
-      <button id="find-delay">Calculate time offset</button><br/>
-      <span id="delay-err"></span>
-    </div>
+
     <div id="gain-box">
-      <label for="gain-input">Volume (1 is normal):</label>
+      <label for="gain-input">Volume:</label>
       <input id="gain-input" type="range" min="0.25" max="50" value="1" step="0.25" />
       <span id="gain-view">1</span>
-      <button id="gain-reset">Reset Volume</button>
+      <button id="gain-reset">Reset</button>
     </div>
+
     <div id="name-box" class="no-login">
       <span id="pixel-name"></span><br />
       <span id="sub-name"></span>
     </div>
+
     <div id="login-box" class="no-schedule no-run">
+      <img id="logo" src="images/logo.svg">
       <span id="name-found"></span><br />
-      <label for="name">Enter your name:</label>
-      <input id="name" type="text" placeholder="Enter your name" /><br />
+      <label for="name">Enter your POSITION:</label><br />
+      <input id="name" type="text" placeholder="Enter POSITION" /><br />
       <div id="subsequence-box">
         <span id="subsequence-select-text">Pick a sequence:</span><br />
         <div id="subsequence-select"></div>
@@ -51,10 +50,15 @@
       </div>
       <button id="start">Begin Countdown</button>
     </div>
+
     <div id="scheduled-box" class="no-login no-run">
-      <span id="time-until-start"></span>
+      <div id="scheduled-center-text">
+        <span id="landscape-tip">Counting down. Get ready! <br/> Turn your phone to <strong>LANDSCAPE  &#8634;	 </strong></span><br/>
+        <span id="time-until-start"></span>
+      </div>
       <button id="cancel">Cancel</button>
     </div>
+
     <div id="running-box" class="no-login no-schedule">
       <div id='flexbox'>
         <div id="current-color"><span id='current-text' class='circle-text'></span></div>
@@ -65,6 +69,7 @@
       </div>
       <button id="stop">Stop</button>
     </div>
+
     <script src="data.js"></script>
     <script src="timesync.js"></script>
     <script src="countdown.js"></script>

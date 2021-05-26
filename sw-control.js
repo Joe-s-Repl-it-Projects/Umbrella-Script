@@ -23,7 +23,7 @@ if ('serviceWorker' in navigator) {
   console.log("Service worker unsupported");
 }
 
-if (screen && screen.orientation) {
+/*if (screen && screen.orientation) {
   screen.orientation.lock("landscape").catch(
     err => console.log("Screen lock failed")
   );
@@ -34,4 +34,4 @@ if (screen && screen.orientation) {
   } else {
     console.log("No screen lock method found");
   }
-}
+}*/

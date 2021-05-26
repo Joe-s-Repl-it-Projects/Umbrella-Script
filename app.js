@@ -34,9 +34,6 @@ for (key in allFrames) {
   const gainInput = document.getElementById("gain-input");
   const gainView = document.getElementById("gain-view");
   const gainReset = document.getElementById("gain-reset");
-  const delayText = document.getElementById("delay-text");
-  const delayErr = document.getElementById("delay-err");
-  const delayFind = document.getElementById("find-delay");
   const pixelName = document.getElementById("pixel-name");
   const subNameSpan = document.getElementById("sub-name");
 
@@ -241,7 +238,7 @@ for (key in allFrames) {
     seqs = allFrames[name];
     if (seqs) {
       nameEntry.style.backgroundColor = "lightgreen";
-      nameFound.innerHTML = "Name found!";
+      nameFound.innerHTML = "Found!";
       document.body.classList.add("name-valid");
       addRadioButtons();
       pixelName.innerHTML = name;
@@ -249,7 +246,7 @@ for (key in allFrames) {
     } else {
       if (promptInvalid) {
         nameEntry.style.backgroundColor = "lightcoral";
-        nameFound.innerHTML = "Name not found";
+        nameFound.innerHTML = "Not a valid position";
       }
       else {
         nameEntry.style.backgroundColor = "";
@@ -304,31 +301,35 @@ for (key in allFrames) {
   }
 
   function checkTime() {
+    timeFunc = () => new Date();
+    if (timeSync) {
+      timeFunc = timeSync.now;
+    }
     Countdown.cancel(countdownId);
     let valid = false;
     let [hours, minutes] = timeInput.value.split(":");
     if (minutes === undefined || hours === undefined) {
       document.body.classList.remove("time-valid");
-      nameFound.innerHTML = "Name found!";
+      nameFound.innerHTML = "Found!";
       return;
     }
-    startTime = new Date();
+    startTime = timeFunc();
     try {
       startTime.setHours(hours);
       startTime.setMinutes(minutes);
       startTime.setSeconds(0);
       startTime.setMilliseconds(0);
-      if (startTime <= new Date()) {
+      if (startTime <= timeFunc()) {
         if (document.body.classList.contains("subsequence-valid")) {
-          nameFound.innerHTML = "Time is in the past";
+          timeLeft.innerHTML = "Time is in the past";
         } else {
           timeInput.value = "";
         }
         throw "past";
       } else {
-        nameFound.innerHTML = "Name found!";
+        timeLeft.innerHTML = "Valid Time!";
+        valid = true;
       }
-      valid = true;
     } catch (err) {
       startTime = undefined;
     }
@@ -343,27 +344,18 @@ for (key in allFrames) {
   timeInput.addEventListener("input", checkTime);
 
   function calcDelay() {
-    delayErr.innerHTML = "Calculating...";
     timeSync.getDelay().then(val => {
       if (val === "no internet") {
         let stored = localStorage.getItem("offset");
-        if (stored === null) {
-          delayText.innerHTML = "Offset: unknown";
-          delayErr.innerHTML = "No internet or stored value";
-        } else {
+        if (stored !== null) {
           timeSync.delay = stored;
-          delayText.innerHTML = "Offset: " + stored + "ms";
-          delayErr = "No internet, using stored value";
-        }
+        } 
       } else {
         localStorage.setItem("offset", val);
-        delayText.innerHTML = "Offset: " + val + "ms";
-        delayErr.innerHTML = "";
       }
     });
   }
-  delayFind.addEventListener("click", calcDelay);
 
-  calcDelay();
+  document.addEventListener("DOMContentLoaded", calcDelay);
 
 }();

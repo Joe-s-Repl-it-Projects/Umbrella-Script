@@ -8,10 +8,10 @@
   --closed-color: hsl(0, 70%, 45%);*/
   --transition-open-color: hsl(50, 85%, 65%);
   --open-color: hsl(50, 85%, 60%);
-  --transition-closed-color: hsl(0, 0%, 10%);
-  --closed-color: hsl(0, 0%, 0%);
-  --transition-undefined-color: hsl(0, 0%, 55%);
-  --undefined-color: hsl(0, 0%, 50%);
+  --transition-closed-color: hsl(202, 96%, 40%);
+  --closed-color: hsl(202, 96%, 44%);
+  --transition-undefined-color: hsla(195, 2%, 60%, 0.678);
+  --undefined-color: hsl(195, 2%, 64%);
   --color-effect-duration: 0.3s;
 }
 
@@ -24,11 +24,12 @@
   font-family: "Roboto", sans-serif;
 }
 
-#delay-box {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  text-align: center;
+html {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
 }
 
 #gain-box {
@@ -52,9 +53,15 @@
 #login-box {
   position: absolute;
   left: 50%;
-  top: 10%;
+  margin-top: 10px;
   transform: translate(-50%, 0);
   text-align: center;
+}
+
+#logo {
+  max-height: 30vh;
+  display: block;
+  margin: auto;
 }
 
 #subsequence-box {
@@ -82,7 +89,7 @@ body.name-valid.subsequence-valid #time-box {
 #start {
   margin-top: 5px;
   font-weight: bold;
-  font-size: 12pt;
+  font-size: 14pt;
   padding: 5px 10px;
   display: none;
 }
@@ -91,8 +98,7 @@ body.name-valid.subsequence-valid.time-valid #start {
   display: unset;
 }
 
-#time-until-start {
-  font-size: 20vw;
+#scheduled-center-text {
   position: absolute;
   top: 50%;
   left: 0;
@@ -100,6 +106,10 @@ body.name-valid.subsequence-valid.time-valid #start {
   display: inline-block;
   width: 100%;
   text-align: center;
+}
+
+#time-until-start {
+  font-size: 20vw;
 }
 
 .fade-out {

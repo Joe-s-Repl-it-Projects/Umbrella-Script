@@ -22,7 +22,7 @@ const timeSync = {
       }
       lowLatencyOffsets.push(delaysRa[i].offset);
     }
-    this.delay = lowLatencyOffsets.reduce((a, b) => a + b) / lowLatencyOffsets.length;
+    this.delay = Math.round(lowLatencyOffsets.reduce((a, b) => a + b) / lowLatencyOffsets.length);
     return this.delay;
   },
   getOnce: async function() {
